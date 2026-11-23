@@ -2,6 +2,9 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import CountryBadge from "./CountryBadge";
+import { caseHref } from "@/lib/casesData";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useI18n } from "@/lib/i18n";
@@ -54,25 +57,22 @@ export default function Cases() {
           <h2 data-case-head className="font-display text-4xl font-extrabold uppercase text-brand sm:text-5xl">{t.cases.title}</h2>
           <p data-case-head className="mt-3 max-w-xl text-lg text-heading">{t.cases.text}</p>
         </div>
-        <a data-case-head href="#" className="rounded-full bg-navy px-7 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-brand dark:bg-card">{t.cases.all}</a>
+        <Link data-case-head href="/caso-de-exito" className="rounded-full bg-navy px-7 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-brand dark:bg-card">{t.cases.all}</Link>
       </div>
 
       <div className="no-scrollbar mt-14 overflow-x-auto px-5 pb-6 lg:mt-16 lg:overflow-visible lg:px-10 lg:pb-0">
         <div ref={track} className="flex w-max gap-6 will-change-transform">
           {t.cases.items.map((title, i) => (
-            <article key={title} className="group w-[82vw] shrink-0 overflow-hidden rounded-3xl bg-surface shadow-lg sm:w-[420px] lg:w-[460px]">
+            <article key={title} className="group relative w-[82vw] shrink-0 overflow-hidden rounded-3xl bg-surface shadow-lg sm:w-[420px] lg:w-[460px]">
               <div className="relative aspect-[16/11] overflow-hidden">
                 <div data-case-img className="absolute inset-[-10%]">
                   <Image src={r2(caseImages[i % caseImages.length])} alt="" fill sizes="460px" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
-                <span className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-[#034ea2] backdrop-blur">
-                  <span aria-hidden className="inline-block h-3 w-4 rounded-sm bg-gradient-to-r from-[#d91023] from-30% via-white via-30% via-70% to-[#d91023] to-70%" />
-                  {t.cases.country}
-                </span>
+                <CountryBadge name={t.cases.country} className="absolute left-4 top-4" />
               </div>
               <div className="flex min-h-44 flex-col justify-between gap-5 p-6">
                 <h3 className="font-display text-xl font-bold leading-snug text-heading">{title}</h3>
-                <a href="#" className="inline-flex items-center gap-2 text-sm font-bold text-brand transition-all group-hover:gap-3">{t.cases.view} <span aria-hidden>→</span></a>
+                <Link href={caseHref(i)} className="inline-flex items-center gap-2 text-sm font-bold text-brand transition-all group-hover:gap-3 after:absolute after:inset-0">{t.cases.view} <span aria-hidden>→</span></Link>
               </div>
             </article>
           ))}

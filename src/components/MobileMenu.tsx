@@ -6,6 +6,8 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useI18n } from "@/lib/i18n";
 import { solutionChildren } from "@/lib/menuData";
+import { solutionHref, solutionIndex, solutionTabHref } from "@/lib/solutionsData";
+import { productHref, productTabHref } from "@/lib/productsData";
 import { IMG, r2 } from "@/lib/r2";
 import { lenisRef } from "@/lib/lenis";
 import { useNavTo } from "@/lib/useNavTo";
@@ -24,6 +26,8 @@ function Chevron({ open }: { open: boolean }) {
  * Menú móvil. Se renderiza en un portal sobre <body>: el <header> tiene backdrop-filter,
  * que convierte a un hijo `fixed` en un elemento relativo al header (65px) y lo recorta.
  */
+const casesPath = "/caso-de-exito";
+
 export default function MobileMenu({ open, onClose }: Props) {
   const { t, locale } = useI18n();
   const panel = useRef<HTMLDivElement>(null);
@@ -105,8 +109,8 @@ export default function MobileMenu({ open, onClose }: Props) {
               <div className="border-b border-line pb-3">
                 {t.solutions.items.map((cat, i) => (
                   <div key={cat} className="pt-3">
-                    <a href="#soluciones" onClick={(e) => { e.preventDefault(); go("#soluciones"); }} className="block text-sm font-bold uppercase tracking-wide text-brand">{cat}</a>
-                    {solutionChildren[locale][i].map((s) => <a key={s} href="#" onClick={(e) => e.preventDefault()} className={sub}>{s}</a>)}
+                    <a href={solutionTabHref(i)} onClick={(e) => { e.preventDefault(); go(solutionTabHref(i)); }} className="block text-sm font-bold uppercase tracking-wide text-brand">{cat}</a>
+                    {solutionChildren[locale][i].map((s, k) => <a key={s} href={solutionHref(solutionIndex(i, k))} onClick={(e) => { e.preventDefault(); go(solutionHref(solutionIndex(i, k))); }} className={sub}>{s}</a>)}
                   </div>
                 ))}
               </div>
@@ -119,15 +123,15 @@ export default function MobileMenu({ open, onClose }: Props) {
               <div className="border-b border-line pb-3">
                 {productGroups.map((g) => (
                   <div key={g.tab} className="pt-3">
-                    <a href="#productos" onClick={(e) => { e.preventDefault(); go("#productos"); }} className="block text-sm font-bold uppercase tracking-wide text-brand">{g.tab}</a>
-                    {g.items.map((p) => <a key={p.name} href="#" onClick={(e) => e.preventDefault()} className={sub}>{p.name}</a>)}
+                    <a href={productTabHref(productGroups.indexOf(g))} onClick={(e) => { e.preventDefault(); go(productTabHref(productGroups.indexOf(g))); }} className="block text-sm font-bold uppercase tracking-wide text-brand">{g.tab}</a>
+                    {g.items.map((p) => <a key={p.name} href={productHref(t.products.items.indexOf(p))} onClick={(e) => { e.preventDefault(); go(productHref(t.products.items.indexOf(p))); }} className={sub}>{p.name}</a>)}
                   </div>
                 ))}
               </div>
             )}
           </div>
 
-          <div data-mm-item><a href="#casos" onClick={(e) => { e.preventDefault(); go("#casos"); }} className={row}>{nav.cases}</a></div>
+          <div data-mm-item><a href={casesPath} onClick={(e) => { e.preventDefault(); go(casesPath); }} className={row}>{nav.cases}</a></div>
 
           <div data-mm-item>
             <button type="button" aria-expanded={acc === "know"} onClick={() => toggle("know")} className={row}>{nav.know}<Chevron open={acc === "know"} /></button>

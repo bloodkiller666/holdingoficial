@@ -1,18 +1,16 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project. It uses **pnpm** (not npm).
 
 ## Getting Started
 
-First, run the development server:
+El proyecto trae Node y pnpm portables en `.tools/`. En PowerShell, desde la raíz:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```powershell
+. .\.tools\env.ps1   # activa node y pnpm solo en esta terminal
+pnpm install
+pnpm run dev
 ```
+
+Con Node y pnpm instalados globalmente basta `pnpm install` y `pnpm dev`.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

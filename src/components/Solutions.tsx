@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { solutionTabHref } from "@/lib/solutionsData";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -77,14 +79,14 @@ export default function Solutions() {
 
         <div data-sol-intro className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-2xl shadow-navy/20 sm:aspect-[16/10]">
           {t.solutions.items.map((label, i) => (
-            <a key={label} href="#" data-sol-card className="absolute inset-0 block" style={{ opacity: i === 0 ? 1 : 0, visibility: i === 0 ? "visible" : "hidden" }}>
+            <Link key={label} href={solutionTabHref(i)} data-sol-card className="absolute inset-0 block" style={{ opacity: i === 0 ? 1 : 0, visibility: i === 0 ? "visible" : "hidden" }}>
               <Image src={r2(solutionImages[i % solutionImages.length])} alt="" fill sizes="(min-width:1024px) 60vw, 100vw" className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-card px-6 py-5 text-white">
                 <span className="text-lg font-medium">{label}</span>
                 <span aria-hidden className="text-2xl">→</span>
               </div>
-            </a>
+            </Link>
           ))}
           <div className="absolute right-4 top-1/2 z-10 flex -translate-y-1/2 flex-col gap-2">
             {t.solutions.items.map((l, i) => (

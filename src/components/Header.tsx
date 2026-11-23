@@ -9,6 +9,8 @@ import { useGSAP } from "@gsap/react";
 import { useI18n } from "@/lib/i18n";
 import { LOCALES } from "@/lib/dictionaries";
 import { solutionChildren } from "@/lib/menuData";
+import { solutionHref, solutionIndex, solutionTabHref } from "@/lib/solutionsData";
+import { productHref, productTabHref } from "@/lib/productsData";
 import { IMG, r2 } from "@/lib/r2";
 import { useNavTo } from "@/lib/useNavTo";
 import MobileMenu from "./MobileMenu";
@@ -160,9 +162,9 @@ export default function Header() {
         </div>
 
         <nav className="hidden items-center gap-6 xl:flex 2xl:gap-8" onMouseLeave={delayClose}>
-          <button type="button" className={linkCls} onMouseEnter={() => openMega("solutions")} onFocus={() => openMega("solutions")}>{nav.solutions}</button>
-          <button type="button" className={linkCls} onMouseEnter={() => openMega("products")} onFocus={() => openMega("products")}>{nav.products}</button>
-          <a onClick={jump} href="#casos" className={linkCls} onMouseEnter={() => openMega(null)}>{nav.cases}</a>
+          <Link href="/solucion" className={linkCls} onClick={() => setMega(null)} onMouseEnter={() => openMega("solutions")} onFocus={() => openMega("solutions")}>{nav.solutions}</Link>
+          <Link href="/productos" className={linkCls} onClick={() => setMega(null)} onMouseEnter={() => openMega("products")} onFocus={() => openMega("products")}>{nav.products}</Link>
+          <Link href="/caso-de-exito" className={linkCls} onMouseEnter={() => openMega(null)}>{nav.cases}</Link>
           <button type="button" aria-expanded={mega === "know"} className={linkCls} onMouseEnter={() => openMega("know")} onFocus={() => openMega("know")}>{nav.know}</button>
           <Link href="/contacto" className={linkCls} onMouseEnter={() => openMega(null)}>{nav.contact}</Link>
         </nav>
@@ -189,20 +191,20 @@ export default function Header() {
             ))}
             {mega === "solutions" && t.solutions.items.map((cat, i) => (
               <div key={cat} data-mega-col>
-                <a onClick={jump} href="#soluciones" className="mb-3 block font-display text-lg font-bold text-brand">{cat}</a>
+                <Link onClick={() => setMega(null)} href={solutionTabHref(i)} className="mb-3 block font-display text-lg font-bold text-brand">{cat}</Link>
                 <ul className="space-y-1.5">
-                  {solutionChildren[locale][i].map((s) => (
-                    <li key={s}><a href="#" className="inline-block text-sm text-fg transition hover:translate-x-1 hover:text-brand">{s}</a></li>
+                  {solutionChildren[locale][i].map((s, k) => (
+                    <li key={s}><Link onClick={() => setMega(null)} href={solutionHref(solutionIndex(i, k))} className="inline-block text-sm text-fg transition hover:translate-x-1 hover:text-brand">{s}</Link></li>
                   ))}
                 </ul>
               </div>
             ))}
             {mega === "products" && productGroups.map((g) => (
               <div key={g.tab} data-mega-col>
-                <a onClick={jump} href="#productos" className="mb-3 block font-display text-lg font-bold text-brand">{g.tab}</a>
+                <Link onClick={() => setMega(null)} href={productTabHref(productGroups.indexOf(g))} className="mb-3 block font-display text-lg font-bold text-brand">{g.tab}</Link>
                 <ul className="space-y-1.5">
                   {g.items.map((p) => (
-                    <li key={p.name}><a href="#" className="inline-block text-sm text-fg transition hover:translate-x-1 hover:text-brand">{p.name}</a></li>
+                    <li key={p.name}><Link onClick={() => setMega(null)} href={productHref(t.products.items.indexOf(p))} className="inline-block text-sm text-fg transition hover:translate-x-1 hover:text-brand">{p.name}</Link></li>
                   ))}
                 </ul>
               </div>

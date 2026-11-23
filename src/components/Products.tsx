@@ -5,7 +5,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
-import { productImages, r2 } from "@/lib/r2";
+import Link from "next/link";
+import { r2 } from "@/lib/r2";
+import { productHref, productMeta } from "@/lib/productsData";
 import { prefersReducedMotion, useReveal } from "@/lib/useReveal";
 
 export default function Products() {
@@ -17,7 +19,7 @@ export default function Products() {
 
   const items = t.products.items.filter((p) => p.tab === tab);
 
-  // Entrada escalonada de tarjetas al cambiar de pestaña
+  // Entrada escalonada de tarjetas al cambiar de pestaÃ±a
   useGSAP(
     () => {
       if (prefersReducedMotion()) return;
@@ -58,31 +60,32 @@ export default function Products() {
         <div data-reveal className="relative mt-12">
           <div ref={track} className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4">
             {items.map((p, i) => (
-              <a
+              <Link
                 key={p.name}
-                href="#"
+                href={productHref(t.products.items.indexOf(p))}
                 data-prod-card
                 className="group relative flex w-[78%] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-sm transition-shadow hover:shadow-xl sm:w-[44%] lg:w-[30%]"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-card">
-                  <Image src={r2(productImages[t.products.items.indexOf(p)])} alt="" fill sizes="(min-width:1024px) 30vw, (min-width:640px) 44vw, 78vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                  <Image src={r2(productMeta[t.products.items.indexOf(p)].image)} alt="" fill sizes="(min-width:1024px) 30vw, (min-width:640px) 44vw, 78vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
                   <span aria-hidden className="absolute bottom-3 left-4 font-display text-4xl font-extrabold leading-none text-white/90">{String(i + 1).padStart(2, "0")}</span>
                 </div>
                 <div className="flex items-center justify-between gap-3 p-5">
                   <h3 className="font-display text-lg font-bold leading-tight text-heading">{p.name}</h3>
-                  <span aria-hidden className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand text-white transition-transform group-hover:translate-x-1">→</span>
+                  <span aria-hidden className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand text-white transition-transform group-hover:translate-x-1">â†’</span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 
           <div className="mt-6 flex justify-center gap-3">
-            <button type="button" aria-label="Anterior" onClick={() => scrollBy(-1)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-brand text-brand transition hover:bg-brand hover:text-white">←</button>
-            <button type="button" aria-label="Siguiente" onClick={() => scrollBy(1)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-brand text-brand transition hover:bg-brand hover:text-white">→</button>
+            <button type="button" aria-label="Anterior" onClick={() => scrollBy(-1)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-brand text-brand transition hover:bg-brand hover:text-white">â†</button>
+            <button type="button" aria-label="Siguiente" onClick={() => scrollBy(1)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-brand text-brand transition hover:bg-brand hover:text-white">â†’</button>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
