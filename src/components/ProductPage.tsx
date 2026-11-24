@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/Link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SiteShell from "./SiteShell";
@@ -14,6 +14,7 @@ import { caseHref } from "@/lib/casesData";
 import { newsHref } from "@/lib/newsData";
 import { solutionLabels } from "@/lib/solutionsData";
 import { productHref, productLabels, productMeta, productSectorIcons, productTabHref, productTitles, type ProductContent } from "@/lib/productsData";
+import { productProjects } from "@/lib/productProjects";
 import { productsEs } from "@/lib/productsContent.es";
 import { productsEn } from "@/lib/productsContent.en";
 import { productsPt } from "@/lib/productsContent.pt";
@@ -40,6 +41,7 @@ export default function ProductPage({ index }: { index: number }) {
   useReveal(root);
   useParallax(root);
 
+  const projects = productProjects(index, locale);
   const siblings = productMeta.map((p, i) => ({ i, tab: p.tab })).filter((p) => p.tab === meta.tab);
 
   useGSAP(
@@ -176,6 +178,33 @@ export default function ProductPage({ index }: { index: number }) {
             </ul>
           </div>
         </section>
+
+        {/* Proyectos realizados */}
+        {projects.length > 0 && (
+          <section className="py-16 lg:py-24">
+            <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
+              <h2 data-reveal className={h2}>{S.projects}</h2>
+              <div className="mt-10 grid gap-6 lg:grid-cols-2">
+                {projects.map((p) => (
+                  <article key={p.title} data-reveal className="group flex flex-col overflow-hidden rounded-3xl border border-line bg-surface">
+                    {p.image && (
+                      <div className="relative aspect-[16/10] overflow-hidden bg-alt">
+                        <Image src={r2(p.image)} alt={p.title} fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                      </div>
+                    )}
+                    <div className="p-7 sm:p-9">
+                      <span aria-hidden className="block h-1 w-12 rounded-full bg-brand" />
+                      <h3 className="mt-5 font-display text-2xl font-extrabold leading-snug text-heading">{p.title}</h3>
+                      <div className="mt-4 space-y-3 leading-7 text-fg">
+                        {p.text.map((x, j) => <p key={j}>{x}</p>)}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Asesoramiento */}
         <section className="bg-alt py-16 lg:py-24">

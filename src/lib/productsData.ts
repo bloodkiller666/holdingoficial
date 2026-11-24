@@ -10,11 +10,11 @@ export const productMeta = [
   { slug: "mejorador-de-adherencia", tab: 0, image: "1027698222.webp", intro: "844481952.jpg" },
   { slug: "sellador-de-grietas", tab: 0, image: "1802468337.webp", intro: "1023903760.webp" },
   { slug: "mezcla-en-frio", tab: 0, image: "3s9ycz3s9ycz3s9y.webp", intro: "iStock-2220248002-Photoroom-1.webp" },
-  { slug: "barreras-metalicas-certificadas", tab: 1, image: "789v69789v69789v.webp", intro: null },
+  { slug: "barreras-metalicas-certificadas", tab: 1, image: "789v69789v69789v.webp", intro: "buju7bbuju7bbuju.png" },
   { slug: "amortiguadores-de-impacto", tab: 1, image: "upscayl_2x_upscayl-lite-4x.webp", intro: "7oaug37oaug37oau.png" },
-  { slug: "senalizacion-vertical", tab: 1, image: "evomeyevomeyevom.webp", intro: null },
-  { slug: "estabilizador-de-suelos", tab: 2, image: "5cpxk05cpxk05cpx.webp", intro: null },
-  { slug: "barreras-acusticas", tab: 2, image: "5vmakw5vmakw5vma.webp", intro: null },
+  { slug: "senalizacion-vertical", tab: 1, image: "evomeyevomeyevom.webp", intro: "qxup7tqxup7tqxup.png" },
+  { slug: "estabilizador-de-suelos", tab: 2, image: "5cpxk05cpxk05cpx.webp", intro: "DSCN2889.webp" },
+  { slug: "barreras-acusticas", tab: 2, image: "5vmakw5vmakw5vma.webp", intro: "n5w8ktn5w8ktn5w8.webp" },
   { slug: "paneles-vitrificados", tab: 2, image: "21aag21aag21aag2.png", intro: "xm2m8rxm2m8rxm2mjujuu.jpg" },
 ] as const;
 

@@ -2,7 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/Link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";

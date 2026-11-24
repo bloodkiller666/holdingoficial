@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { useI18n } from "@/lib/i18n";
 import { IMG, r2 } from "@/lib/r2";
 
@@ -40,7 +40,7 @@ export default function Footer() {
             <h3 className="font-display text-xl font-bold text-brand">TDM Asfaltos</h3>
             <ul className="mt-3 space-y-2">
               {t.footer.links.map((l, i) => (
-                <li key={l}><Link href={i === 0 ? "/nosotros" : i === 1 ? "/caso-de-exito" : i === 2 ? "/sostenibilidad" : i === 3 ? "/unete-a-nosotros" : i === 4 ? "/politicas-de-privacidad" : "#"} className="text-white/85 transition hover:text-brand">{l}</Link></li>
+                <li key={l}><Link href={i === 0 ? "/nosotros" : i === 1 ? "/caso-de-exito" : i === 2 ? "/sostenibilidad" : i === 3 ? "/unete-a-nosotros" : i === 4 ? "/politicas-de-privacidad" : "/libro-de-reclamaciones"} className="text-white/85 transition hover:text-brand">{l}</Link></li>
               ))}
             </ul>
           </div>

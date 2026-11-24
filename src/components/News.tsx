@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { useI18n } from "@/lib/i18n";
 import { newsImages, r2 } from "@/lib/r2";
 import { newsHref } from "@/lib/newsData";

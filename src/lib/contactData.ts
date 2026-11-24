@@ -39,7 +39,12 @@ type ContactText = {
   message: string; privacyBefore: string; privacyLink: string; privacyAfter: string; send: string;
   countries: string[];
   errRequired: string; errEmail: string; errPhone: string; errPrivacy: string;
+  sending: string; sentTitle: string; sentText: string; sentAgain: string; errSend: string;
+  complaintHint: string; complaintLink: string;
 };
+
+/** Índice de «Reclamo» dentro de `topics` (la última opción, igual en los tres idiomas). */
+export const COMPLAINT_TOPIC = 4;
 
 export const contactText: Record<Locale, ContactText> = {
   es: {
@@ -50,10 +55,12 @@ export const contactText: Record<Locale, ContactText> = {
     formTitle: "Completa el formulario y te contactaremos pronto.",
     firstName: "Nombres", lastName: "Apellidos", emailLabel: "Correo electrónico", phoneLabel: "Teléfono",
     countryLabel: "País", countryPh: "Seleccione un país", topic: "Seleccione su consulta", topicPh: "Seleccione una opción",
-    topics: ["Consulta general", "Presupuesto", "Soporte técnico", "Información del producto"],
+    topics: ["Consulta general", "Presupuesto", "Soporte técnico", "Información del producto", "Reclamo"],
     message: "Mensaje", privacyBefore: "He leído y acepto las ", privacyLink: "condiciones de privacidad", privacyAfter: " y tratamiento de mis datos", send: "Enviar",
     countries: ["Perú", "Colombia", "México", "Argentina", "Brasil", "Chile", "Guatemala"],
     errRequired: "Campo obligatorio", errEmail: "Ingresa un correo válido", errPhone: "Ingresa un teléfono válido", errPrivacy: "Debes aceptar las condiciones de privacidad",
+    sending: "Enviando…", sentTitle: "¡Mensaje enviado!", sentText: "Gracias por escribirnos. Nuestro equipo te contactará pronto.", sentAgain: "Enviar otro mensaje", errSend: "No pudimos enviar tu mensaje. Inténtalo de nuevo o escríbenos por WhatsApp.",
+    complaintHint: "Este envío se registra como reclamo ante nuestro equipo. Si quieres presentar un reclamo o queja formal, usa el ", complaintLink: "Libro de Reclamaciones",
   },
   en: {
     title: "Contact", country: "Peru", home: "Home",
@@ -63,10 +70,12 @@ export const contactText: Record<Locale, ContactText> = {
     formTitle: "Fill in the form and we will contact you soon.",
     firstName: "First name", lastName: "Last name", emailLabel: "Email", phoneLabel: "Phone",
     countryLabel: "Country", countryPh: "Select a country", topic: "Select your inquiry", topicPh: "Select an option",
-    topics: ["General inquiry", "Quote", "Technical support", "Product information"],
+    topics: ["General inquiry", "Quote", "Technical support", "Product information", "Complaint"],
     message: "Message", privacyBefore: "I have read and accept the ", privacyLink: "privacy conditions", privacyAfter: " and the processing of my data", send: "Send",
     countries: ["Peru", "Colombia", "Mexico", "Argentina", "Brazil", "Chile", "Guatemala"],
     errRequired: "Required field", errEmail: "Enter a valid email", errPhone: "Enter a valid phone number", errPrivacy: "You must accept the privacy conditions",
+    sending: "Sending…", sentTitle: "Message sent!", sentText: "Thank you for writing to us. Our team will contact you soon.", sentAgain: "Send another message", errSend: "We could not send your message. Please try again or write to us on WhatsApp.",
+    complaintHint: "This submission is logged as a complaint with our team. To file a formal complaint or grievance, use the ", complaintLink: "Complaints Book",
   },
   pt: {
     title: "Contato", country: "Peru", home: "Início",
@@ -76,9 +85,11 @@ export const contactText: Record<Locale, ContactText> = {
     formTitle: "Preencha o formulário e entraremos em contato em breve.",
     firstName: "Nome", lastName: "Sobrenome", emailLabel: "E-mail", phoneLabel: "Telefone",
     countryLabel: "País", countryPh: "Selecione um país", topic: "Selecione sua consulta", topicPh: "Selecione uma opção",
-    topics: ["Consulta geral", "Orçamento", "Suporte técnico", "Informações do produto"],
+    topics: ["Consulta geral", "Orçamento", "Suporte técnico", "Informações do produto", "Reclamação"],
     message: "Mensagem", privacyBefore: "Li e aceito as ", privacyLink: "condições de privacidade", privacyAfter: " e o tratamento dos meus dados", send: "Enviar",
     countries: ["Peru", "Colômbia", "México", "Argentina", "Brasil", "Chile", "Guatemala"],
     errRequired: "Campo obrigatório", errEmail: "Informe um e-mail válido", errPhone: "Informe um telefone válido", errPrivacy: "Você deve aceitar as condições de privacidade",
+    sending: "Enviando…", sentTitle: "Mensagem enviada!", sentText: "Obrigado por nos escrever. Nossa equipe entrará em contato em breve.", sentAgain: "Enviar outra mensagem", errSend: "Não foi possível enviar sua mensagem. Tente novamente ou escreva para nós pelo WhatsApp.",
+    complaintHint: "Este envio é registrado como reclamação junto à nossa equipe. Para apresentar uma reclamação ou queixa formal, use o ", complaintLink: "Livro de Reclamações",
   },
 };

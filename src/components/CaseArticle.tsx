@@ -2,7 +2,7 @@
 
 import { Fragment, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -15,7 +15,7 @@ import { caseCategories, caseContent, caseHref, caseInlineImages, caseLabels } f
 import { prefersReducedMotion, useParallax, useReveal } from "@/lib/useReveal";
 
 export default function CaseArticle({ index }: { index: number }) {
-  const { t, locale } = useI18n();
+  const { t, locale, href } = useI18n();
   const router = useRouter();
   const root = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
@@ -40,7 +40,7 @@ export default function CaseArticle({ index }: { index: number }) {
     { scope: root, dependencies: [locale, index] },
   );
 
-  const back = () => (window.history.length > 1 ? router.back() : router.push("/caso-de-exito"));
+  const back = () => (window.history.length > 1 ? router.back() : router.push(href("/caso-de-exito")));
   const url = () => window.location.href;
   const open = (href: string) => window.open(href, "_blank", "noopener,noreferrer");
   const share = async () => {

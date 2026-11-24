@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/Link";
 import CountryBadge from "./CountryBadge";
 import { caseHref } from "@/lib/casesData";
 import gsap from "gsap";

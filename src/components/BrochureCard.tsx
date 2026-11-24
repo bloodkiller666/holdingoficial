@@ -6,6 +6,7 @@ import { DownloadIcon } from "./AboutArt";
 import { useI18n } from "@/lib/i18n";
 import { r2 } from "@/lib/r2";
 import { CONTACT, COUNTRY_CODES, contactText } from "@/lib/contactData";
+import { submitForm } from "@/lib/submitForm";
 import { brochurePdf, brochureThumbs, solutionLabels } from "@/lib/solutionsData";
 
 const input =
@@ -32,9 +33,13 @@ export default function BrochureCard({ thumb = 0, title }: { thumb?: number; tit
     return () => d.removeEventListener("click", onClick);
   }, []);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [sending, setSending] = useState(false);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const d = new FormData(e.currentTarget);
+    if (sending) return;
+    const form = e.currentTarget;
+    const d = new FormData(form);
     const get = (k: string) => String(d.get(k) ?? "").trim();
     const next: Errors = {};
     if (!get("name")) next.name = c.errRequired;
@@ -45,13 +50,18 @@ export default function BrochureCard({ thumb = 0, title }: { thumb?: number; tit
     if (!d.get("privacy")) next.privacy = c.errPrivacy;
     setErrors(next);
     if (Object.keys(next).length) {
-      e.currentTarget.querySelector<HTMLElement>(`[name="${Object.keys(next)[0]}"]`)?.focus();
+      form.querySelector<HTMLElement>(`[name="${Object.keys(next)[0]}"]`)?.focus();
       return;
     }
-    // TODO: guardar los datos del lead (correo / API) cuando se indique el destino.
-    window.open(r2(brochurePdf), "_blank", "noopener,noreferrer");
+    // El PDF se abre siempre (no se bloquea la descarga si el registro del lead falla).
+    const popup = window.open("", "_blank");
+    setSending(true);
+    const dialCode = COUNTRY_CODES.find((k) => k.code === dial)?.dial ?? "";
+    await submitForm("brochure", locale, { name: get("name"), email: get("email"), phone: `${dialCode} ${get("phone")}`, product: title, website: get("website") });
+    setSending(false);
+    if (popup) popup.location.href = r2(brochurePdf); else window.open(r2(brochurePdf), "_blank", "noopener,noreferrer");
     dialog.current?.close();
-    e.currentTarget.reset();
+    form.reset();
   };
 
   const field = (name: keyof Errors, label: string, node: React.ReactNode) => (
@@ -117,8 +127,9 @@ export default function BrochureCard({ thumb = 0, title }: { thumb?: number; tit
             {errors.privacy && <p role="alert" className="mt-1.5 text-sm text-red-600 dark:text-red-400">{errors.privacy}</p>}
           </div>
 
-          <button type="submit" className="inline-flex h-13 items-center justify-center gap-2 rounded-full bg-brand px-10 py-3.5 text-base font-bold text-white shadow-lg shadow-brand/30 transition hover:-translate-y-0.5 hover:bg-brand-dark">
-            <DownloadIcon /> {L.modalSend}
+          <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-0 w-0 opacity-0" />
+          <button type="submit" disabled={sending} className="inline-flex h-13 items-center justify-center gap-2 rounded-full bg-brand px-10 py-3.5 text-base font-bold text-white shadow-lg shadow-brand/30 transition hover:-translate-y-0.5 hover:bg-brand-dark disabled:opacity-60">
+            <DownloadIcon /> {sending ? c.sending : L.modalSend}
           </button>
         </form>
       </dialog>

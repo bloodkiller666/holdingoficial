@@ -117,7 +117,7 @@ const es = {
   },
   footer: {
     hq: "Sede principal",
-    links: ["Sobre nosotros", "Casos de éxito", "Sostenibilidad", "Únete a nosotros", "Políticas de privacidad"],
+    links: ["Sobre nosotros", "Casos de éxito", "Sostenibilidad", "Únete a nosotros", "Políticas de privacidad", "Libro de reclamaciones"],
     rights: "© 2026 Grupo TDM | Todos los derechos reservados.",
     help: "¿Necesitas ayuda?",
   },
@@ -237,7 +237,7 @@ const en: Dictionary = {
   },
   footer: {
     hq: "Headquarters",
-    links: ["About us", "Success stories", "Sustainability", "Join us", "Privacy policy"],
+    links: ["About us", "Success stories", "Sustainability", "Join us", "Privacy policy", "Complaints book"],
     rights: "© 2026 Grupo TDM | All rights reserved.",
     help: "Need help?",
   },
@@ -355,7 +355,7 @@ const pt: Dictionary = {
   },
   footer: {
     hq: "Sede principal",
-    links: ["Sobre nós", "Casos de sucesso", "Sustentabilidade", "Junte-se a nós", "Políticas de privacidade"],
+    links: ["Sobre nós", "Casos de sucesso", "Sustentabilidade", "Junte-se a nós", "Políticas de privacidade", "Livro de reclamações"],
     rights: "© 2026 Grupo TDM | Todos os direitos reservados.",
     help: "Precisa de ajuda?",
   },

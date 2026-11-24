@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/Link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SiteShell from "./SiteShell";

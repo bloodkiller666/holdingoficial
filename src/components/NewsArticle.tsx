@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -14,7 +14,7 @@ import { articleLabels, newsArticles, newsHref } from "@/lib/newsData";
 import { prefersReducedMotion, useParallax, useReveal } from "@/lib/useReveal";
 
 export default function NewsArticle({ index }: { index: number }) {
-  const { t, locale } = useI18n();
+  const { t, locale, href } = useI18n();
   const router = useRouter();
   const root = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
@@ -39,7 +39,7 @@ export default function NewsArticle({ index }: { index: number }) {
     { scope: root, dependencies: [locale, index] },
   );
 
-  const back = () => (window.history.length > 1 ? router.back() : router.push("/noticia"));
+  const back = () => (window.history.length > 1 ? router.back() : router.push(href("/noticia")));
   const url = () => window.location.href;
   const shareLinks = {
     linkedin: () => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url())}`,

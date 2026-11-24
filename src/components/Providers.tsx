@@ -6,6 +6,7 @@ import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { I18nProvider } from "@/lib/i18n";
+import type { Locale } from "@/lib/dictionaries";
 import { lenisRef } from "@/lib/lenis";
 import Loader from "@/components/Loader";
 
@@ -32,10 +33,10 @@ function SmoothScroll() {
   return null;
 }
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({ children, lang }: { children: React.ReactNode; lang: Locale }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-      <I18nProvider>
+      <I18nProvider lang={lang}>
         <SmoothScroll />
         {children}
         <Loader />

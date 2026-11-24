@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { r2 } from "@/lib/r2";
 import { productHref, productMeta } from "@/lib/productsData";
 import { prefersReducedMotion, useReveal } from "@/lib/useReveal";
@@ -19,7 +19,7 @@ export default function Products() {
 
   const items = t.products.items.filter((p) => p.tab === tab);
 
-  // Entrada escalonada de tarjetas al cambiar de pestaÃ±a
+  // Entrada escalonada de tarjetas al cambiar de pestaña
   useGSAP(
     () => {
       if (prefersReducedMotion()) return;
@@ -73,15 +73,15 @@ export default function Products() {
                 </div>
                 <div className="flex items-center justify-between gap-3 p-5">
                   <h3 className="font-display text-lg font-bold leading-tight text-heading">{p.name}</h3>
-                  <span aria-hidden className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand text-white transition-transform group-hover:translate-x-1">â†’</span>
+                  <span aria-hidden className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand text-white transition-transform group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             ))}
           </div>
 
           <div className="mt-6 flex justify-center gap-3">
-            <button type="button" aria-label="Anterior" onClick={() => scrollBy(-1)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-brand text-brand transition hover:bg-brand hover:text-white">â†</button>
-            <button type="button" aria-label="Siguiente" onClick={() => scrollBy(1)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-brand text-brand transition hover:bg-brand hover:text-white">â†’</button>
+            <button type="button" aria-label="Anterior" onClick={() => scrollBy(-1)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-brand text-brand transition hover:bg-brand hover:text-white">←</button>
+            <button type="button" aria-label="Siguiente" onClick={() => scrollBy(1)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-brand text-brand transition hover:bg-brand hover:text-white">→</button>
           </div>
         </div>
       </div>

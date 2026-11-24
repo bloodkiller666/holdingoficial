@@ -8,6 +8,7 @@ import { useI18n } from "@/lib/i18n";
 import { solutionChildren } from "@/lib/menuData";
 import { solutionHref, solutionIndex, solutionTabHref } from "@/lib/solutionsData";
 import { productHref, productTabHref } from "@/lib/productsData";
+import { GEO_URL } from "@/lib/links";
 import { IMG, r2 } from "@/lib/r2";
 import { lenisRef } from "@/lib/lenis";
 import { useNavTo } from "@/lib/useNavTo";
@@ -27,9 +28,10 @@ function Chevron({ open }: { open: boolean }) {
  * que convierte a un hijo `fixed` en un elemento relativo al header (65px) y lo recorta.
  */
 const casesPath = "/caso-de-exito";
+const contactPath = "/contacto";
 
 export default function MobileMenu({ open, onClose }: Props) {
-  const { t, locale } = useI18n();
+  const { t, locale, href: lh } = useI18n();
   const panel = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [acc, setAcc] = useState<string | null>(null);
@@ -109,8 +111,8 @@ export default function MobileMenu({ open, onClose }: Props) {
               <div className="border-b border-line pb-3">
                 {t.solutions.items.map((cat, i) => (
                   <div key={cat} className="pt-3">
-                    <a href={solutionTabHref(i)} onClick={(e) => { e.preventDefault(); go(solutionTabHref(i)); }} className="block text-sm font-bold uppercase tracking-wide text-brand">{cat}</a>
-                    {solutionChildren[locale][i].map((s, k) => <a key={s} href={solutionHref(solutionIndex(i, k))} onClick={(e) => { e.preventDefault(); go(solutionHref(solutionIndex(i, k))); }} className={sub}>{s}</a>)}
+                    <a href={lh(solutionTabHref(i))} onClick={(e) => { e.preventDefault(); go(solutionTabHref(i)); }} className="block text-sm font-bold uppercase tracking-wide text-brand">{cat}</a>
+                    {solutionChildren[locale][i].map((s, k) => <a key={s} href={lh(solutionHref(solutionIndex(i, k)))} onClick={(e) => { e.preventDefault(); go(solutionHref(solutionIndex(i, k))); }} className={sub}>{s}</a>)}
                   </div>
                 ))}
               </div>
@@ -123,31 +125,31 @@ export default function MobileMenu({ open, onClose }: Props) {
               <div className="border-b border-line pb-3">
                 {productGroups.map((g) => (
                   <div key={g.tab} className="pt-3">
-                    <a href={productTabHref(productGroups.indexOf(g))} onClick={(e) => { e.preventDefault(); go(productTabHref(productGroups.indexOf(g))); }} className="block text-sm font-bold uppercase tracking-wide text-brand">{g.tab}</a>
-                    {g.items.map((p) => <a key={p.name} href={productHref(t.products.items.indexOf(p))} onClick={(e) => { e.preventDefault(); go(productHref(t.products.items.indexOf(p))); }} className={sub}>{p.name}</a>)}
+                    <a href={lh(productTabHref(productGroups.indexOf(g)))} onClick={(e) => { e.preventDefault(); go(productTabHref(productGroups.indexOf(g))); }} className="block text-sm font-bold uppercase tracking-wide text-brand">{g.tab}</a>
+                    {g.items.map((p) => <a key={p.name} href={lh(productHref(t.products.items.indexOf(p)))} onClick={(e) => { e.preventDefault(); go(productHref(t.products.items.indexOf(p))); }} className={sub}>{p.name}</a>)}
                   </div>
                 ))}
               </div>
             )}
           </div>
 
-          <div data-mm-item><a href={casesPath} onClick={(e) => { e.preventDefault(); go(casesPath); }} className={row}>{nav.cases}</a></div>
+          <div data-mm-item><a href={lh(casesPath)} onClick={(e) => { e.preventDefault(); go(casesPath); }} className={row}>{nav.cases}</a></div>
 
           <div data-mm-item>
             <button type="button" aria-expanded={acc === "know"} onClick={() => toggle("know")} className={row}>{nav.know}<Chevron open={acc === "know"} /></button>
             {acc === "know" && (
               <div className="border-b border-line pb-2">
                 {[nav.aboutUs, nav.cdt, nav.sustain, nav.join].map((l, i) => i >= 0
-                  ? <a key={l} href={["/nosotros", "/centro-de-desarrollo-tecnologico", "/sostenibilidad", "/unete-a-nosotros"][i]} onClick={(e) => { e.preventDefault(); go(["/nosotros", "/centro-de-desarrollo-tecnologico", "/sostenibilidad", "/unete-a-nosotros"][i]); }} className={sub}>{l}</a>
+                  ? <a key={l} href={lh(["/nosotros", "/centro-de-desarrollo-tecnologico", "/sostenibilidad", "/unete-a-nosotros"][i])} onClick={(e) => { e.preventDefault(); go(["/nosotros", "/centro-de-desarrollo-tecnologico", "/sostenibilidad", "/unete-a-nosotros"][i]); }} className={sub}>{l}</a>
                   : <a key={l} href="#" onClick={(e) => e.preventDefault()} className={sub}>{l}</a>)}
               </div>
             )}
           </div>
 
-          <div data-mm-item><a href="/contacto" onClick={(e) => { e.preventDefault(); go("/contacto"); }} className={row}>{nav.contact}</a></div>
+          <div data-mm-item><a href={lh(contactPath)} onClick={(e) => { e.preventDefault(); go(contactPath); }} className={row}>{nav.contact}</a></div>
 
           <div data-mm-item className="mt-6">
-            <a href="#" onClick={(e) => e.preventDefault()} className="block rounded-full border-2 border-navy px-5 py-3 text-center text-sm font-bold tracking-wide text-heading active:scale-[0.97] active:bg-navy active:text-white">{nav.geo}</a>
+            <a href={GEO_URL} target="_blank" rel="noopener noreferrer" className="block rounded-full border-2 border-navy px-5 py-3 text-center text-sm font-bold tracking-wide text-heading active:scale-[0.97] active:bg-navy active:text-white">{nav.geo}</a>
           </div>
         </nav>
       </div>

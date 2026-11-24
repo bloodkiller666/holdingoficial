@@ -1,40 +1,30 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useMemo } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { dictionaries, type Dictionary, type Locale } from "./dictionaries";
+import { localizeHref, parseLocalePath, toLocalePath } from "./routes";
 
-type Ctx = { locale: Locale; t: Dictionary; setLocale: (l: Locale) => void };
+type Ctx = { locale: Locale; t: Dictionary; setLocale: (l: Locale) => void; href: (path: string) => string };
 const I18nContext = createContext<Ctx | null>(null);
-const KEY = "tdm-locale";
 
-export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("es");
+/** El idioma viene de la URL (/en/..., /pt/...). Cambiarlo navega a la misma página traducida. */
+export function I18nProvider({ lang, children }: { lang: Locale; children: React.ReactNode }) {
+  const router = useRouter();
+  const pathname = usePathname();
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(KEY) as Locale | null;
-      /* eslint-disable react-hooks/set-state-in-effect -- idioma guardado, solo disponible tras hidratar */
-      if (saved && saved in dictionaries) setLocaleState(saved);
-      else {
-        const nav = navigator.language.slice(0, 2) as Locale;
-        if (nav in dictionaries) setLocaleState(nav);
-        /* eslint-enable react-hooks/set-state-in-effect */
-      }
-    } catch {}
-  }, []);
+  const setLocale = useCallback(
+    (l: Locale) => {
+      if (l === lang) return;
+      const parsed = parseLocalePath(pathname);
+      const target = toLocalePath(parsed?.canonical ?? "/", l);
+      router.push(target + window.location.search + window.location.hash);
+    },
+    [lang, pathname, router],
+  );
 
-  useEffect(() => {
-    document.documentElement.lang = locale;
-  }, [locale]);
-
-  const setLocale = useCallback((l: Locale) => {
-    setLocaleState(l);
-    try {
-      localStorage.setItem(KEY, l);
-    } catch {}
-  }, []);
-
-  const value = useMemo(() => ({ locale, t: dictionaries[locale], setLocale }), [locale, setLocale]);
+  const href = useCallback((path: string) => localizeHref(path, lang), [lang]);
+  const value = useMemo(() => ({ locale: lang, t: dictionaries[lang], setLocale, href }), [lang, setLocale, href]);
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
 
