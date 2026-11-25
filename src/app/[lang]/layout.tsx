@@ -1,3 +1,4 @@
+import { ThemeScript } from "@/lib/theme";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Barlow, Cairo } from "next/font/google";
@@ -33,9 +34,11 @@ export default async function RootLayout({ children, params }: { children: React
     <html lang={lang} suppressHydrationWarning className={`${barlow.variable} ${cairo.variable}`}>
       <head>
         {process.env.NEXT_PUBLIC_R2_DOMAIN && <link rel="preconnect" href={process.env.NEXT_PUBLIC_R2_DOMAIN} crossOrigin="anonymous" />}
+
         <noscript><style>{".tdm-loader{display:none!important}"}</style></noscript>
       </head>
       <body className="antialiased">
+        <ThemeScript />
         <Providers lang={lang}>{children}</Providers>
       </body>
     </html>

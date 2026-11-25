@@ -161,3 +161,113 @@ $ next dev
 [browser] GSAP target [data-mm-scrim] not found. https://gsap.com (src/components/MobileMenu.tsx:61:12)
 [browser] GSAP target  not found. https://gsap.com (src/components/MobileMenu.tsx:61:12)
 [browser] GSAP target  not found. https://gsap.com
+[browser] GSAP target [data-mm-scrim] not found. https://gsap.com (src/components/MobileMenu.tsx:61:12)
+[browser] GSAP target  not found. https://gsap.com (src/components/MobileMenu.tsx:61:12)
+[browser] GSAP target  not found. https://gsap.com
+[browser] GSAP target [data-mm-scrim] not found. https://gsap.com (src/components/MobileMenu.tsx:61:12)
+[browser] GSAP target  not found. https://gsap.com (src/components/MobileMenu.tsx:61:12)
+[browser] GSAP target  not found. https://gsap.com
+[browser] GSAP target [data-mm-scrim] not found. https://gsap.com (src/components/MobileMenu.tsx:61:12)
+[browser] GSAP target  not found. https://gsap.com (src/components/MobileMenu.tsx:61:12)
+[browser] GSAP target  not found. https://gsap.com
+[browser] GSAP target [data-mm-scrim] not found. https://gsap.com (src/components/MobileMenu.tsx:61:12)
+[browser] GSAP target  not found. https://gsap.com (src/components/MobileMenu.tsx:61:12)
+[browser] GSAP target  not found. https://gsap.com
+ GET /productos 200 in 580ms (next.js: 300ms, proxy.ts: 9ms, generate-params: 231ms, application-code: 40ms)
+ GET /productos/amortiguadores-de-impacto 200 in 1045ms (next.js: 621ms, proxy.ts: 9ms, generate-params: 382ms, application-code: 33ms)
+ GET / 200 in 183ms (next.js: 47ms, proxy.ts: 5ms, generate-params: 81ms, application-code: 49ms)
+ GET /caso-de-exito 200 in 921ms (next.js: 476ms, proxy.ts: 5ms, generate-params: 401ms, application-code: 39ms)
+ GET /caso-de-exito/pavimentacion-con-mezclas-asfalticas-modificadas-con-polimeros 200 in 896ms (next.js: 403ms, proxy.ts: 7ms, generate-params: 418ms, application-code: 67ms)
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 180ms (next.js: 61ms, proxy.ts: 7ms, generate-params: 78ms, application-code: 34ms)
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+ GET /pt/casos-de-sucesso/pavimentacao-com-misturas-asfalticas-modificadas-com-polimeros 200 in 175ms (next.js: 10ms, proxy.ts: 6ms, generate-params: 96ms, application-code: 63ms)
+ GET /pt/casos-de-sucesso/pavimentacao-com-misturas-asfalticas-modificadas-com-polimeros 200 in 144ms (next.js: 8ms, proxy.ts: 6ms, generate-params: 84ms, application-code: 47ms)
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 120ms (next.js: 9ms, proxy.ts: 8ms, generate-params: 81ms, application-code: 23ms)
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+ GET /caso-de-exito/pavimentacion-con-mezclas-asfalticas-modificadas-con-polimeros 200 in 215ms (next.js: 12ms, proxy.ts: 8ms, generate-params: 117ms, application-code: 78ms)
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 162ms (next.js: 43ms, proxy.ts: 5ms, generate-params: 84ms, application-code: 30ms)
+✓ Compiled in 328ms
+✓ Compiled in 80ms
+✓ Compiled in 130ms
+✓ Compiled in 84ms
+✓ Compiled in 54ms
+⨯ ReferenceError: THEME_SCRIPT is not defined
+    at RootLayout (src\app\[lang]\layout.tsx:36:52)
+  34 |       <head>
+  35 |         {process.env.NEXT_PUBLIC_R2_DOMAIN && <link rel="preconnect" href={process.env.NEXT_PUBLIC_R2_DOMAIN} crossOrigin="anonymous" />}
+> 36 |         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+     |                                                    ^
+  37 |         <noscript><style>{".tdm-loader{display:none!important}"}</style></noscript>
+  38 |       </head>
+  39 |       <body className="antialiased"> {
+  digest: '2830537432'
+}
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 184ms (next.js: 69ms, proxy.ts: 4ms, generate-params: 80ms, application-code: 31ms)
+⨯ ReferenceError: THEME_SCRIPT is not defined
+    at RootLayout (src\app\[lang]\layout.tsx:36:52)
+  34 |       <head>
+  35 |         {process.env.NEXT_PUBLIC_R2_DOMAIN && <link rel="preconnect" href={process.env.NEXT_PUBLIC_R2_DOMAIN} crossOrigin="anonymous" />}
+> 36 |         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+     |                                                    ^
+  37 |         <noscript><style>{".tdm-loader{display:none!important}"}</style></noscript>
+  38 |       </head>
+  39 |       <body className="antialiased"> {
+  digest: '2830537432'
+}
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 191ms
+✓ Compiled in 93ms
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 247ms (next.js: 72ms, proxy.ts: 7ms, generate-params: 107ms, application-code: 62ms)
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 155ms (next.js: 6ms, proxy.ts: 5ms, generate-params: 105ms, application-code: 39ms)
+ GET /exitos/mezclas-asfalticas-modificadas-con-polimeros 404 in 446ms (next.js: 409ms, proxy.ts: 9ms, application-code: 29ms)
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 150ms (next.js: 10ms, proxy.ts: 4ms, generate-params: 89ms, application-code: 47ms)
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 141ms (next.js: 12ms, proxy.ts: 13ms, generate-params: 79ms, application-code: 37ms)
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+ GET / 200 in 164ms (next.js: 40ms, proxy.ts: 3ms, generate-params: 81ms, application-code: 40ms)
+ GET /en 200 in 121ms (next.js: 9ms, proxy.ts: 8ms, generate-params: 78ms, application-code: 27ms)
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+ GET /pt 200 in 113ms (next.js: 4ms, proxy.ts: 4ms, generate-params: 77ms, application-code: 29ms)
+ GET / 200 in 126ms (next.js: 6ms, proxy.ts: 10ms, generate-params: 86ms, application-code: 24ms)
+✓ Compiled in 286ms
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 191ms (next.js: 76ms, proxy.ts: 5ms, generate-params: 82ms, application-code: 27ms)
+ GET / 200 in 197ms (next.js: 63ms, proxy.ts: 5ms, generate-params: 77ms, application-code: 51ms)
+ GET /en 200 in 134ms (next.js: 4ms, proxy.ts: 5ms, generate-params: 85ms, application-code: 40ms)
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+ GET /pt 200 in 139ms (next.js: 9ms, proxy.ts: 9ms, generate-params: 93ms, application-code: 28ms)
+ GET / 200 in 106ms (next.js: 5ms, proxy.ts: 5ms, generate-params: 75ms, application-code: 20ms)
+ GET /exitos/mezclas-asfalticas-modificadas-con-polimeros 404 in 80ms (next.js: 25ms, proxy.ts: 10ms, application-code: 45ms)
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 134ms (next.js: 10ms, proxy.ts: 5ms, generate-params: 76ms, application-code: 42ms)
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 166ms (next.js: 9ms, proxy.ts: 12ms, generate-params: 80ms, application-code: 65ms)
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+✓ Compiled in 256ms
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 200ms (next.js: 85ms, proxy.ts: 9ms, generate-params: 83ms, application-code: 24ms)
+ GET / 200 in 191ms (next.js: 41ms, proxy.ts: 3ms, generate-params: 77ms, application-code: 71ms)
+ GET /en 200 in 151ms (next.js: 11ms, proxy.ts: 9ms, generate-params: 97ms, application-code: 34ms)
+ GET /pt 200 in 129ms (next.js: 8ms, proxy.ts: 9ms, generate-params: 90ms, application-code: 22ms)
+ GET / 200 in 123ms (next.js: 8ms, proxy.ts: 4ms, generate-params: 81ms, application-code: 30ms)
+ GET /exitos/mezclas-asfalticas-modificadas-con-polimeros 404 in 52ms (next.js: 29ms, proxy.ts: 3ms, application-code: 19ms)
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 164ms (next.js: 22ms, proxy.ts: 8ms, generate-params: 82ms, application-code: 53ms)
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 153ms (next.js: 7ms, proxy.ts: 7ms, generate-params: 92ms, application-code: 47ms)
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+⚠ Fast Refresh had to perform a full reload when ./src/lib/theme.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+✓ Compiled in 125ms
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 189ms (next.js: 29ms, proxy.ts: 7ms, generate-params: 95ms, application-code: 58ms)
+ GET / 200 in 163ms (next.js: 15ms, proxy.ts: 4ms, generate-params: 82ms, application-code: 61ms)
+ GET /en 200 in 159ms (next.js: 9ms, proxy.ts: 9ms, generate-params: 112ms, application-code: 28ms)
+ GET /pt 200 in 125ms (next.js: 5ms, proxy.ts: 4ms, generate-params: 83ms, application-code: 33ms)
+ GET / 200 in 122ms (next.js: 6ms, proxy.ts: 10ms, generate-params: 84ms, application-code: 22ms)
+ GET /exitos/mezclas-asfalticas-modificadas-con-polimeros 404 in 37ms (next.js: 9ms, proxy.ts: 5ms, application-code: 23ms)
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 138ms (next.js: 6ms, proxy.ts: 4ms, generate-params: 79ms, application-code: 50ms)
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+ GET /en/success-stories/paving-with-polymer-modified-asphalt-mixes 200 in 136ms (next.js: 4ms, proxy.ts: 8ms, generate-params: 83ms, application-code: 42ms)
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+[browser] Image with src "https://pub-90e385ddac8547b28ec8323ecbb16f43.r2.dev/iStock-1574034729-e1773270672887.webp" has "fill" and parent element with invalid "position". Provided "sticky" should be one of absolute,fixed,relative.
+ GET / 200 in 283ms (next.js: 20ms, proxy.ts: 19ms, generate-params: 151ms, application-code: 93ms)
+ GET / 200 in 345ms (next.js: 22ms, proxy.ts: 24ms, generate-params: 194ms, application-code: 105ms)
+ GET / 200 in 367ms (next.js: 20ms, proxy.ts: 16ms, generate-params: 160ms, application-code: 171ms)
+ GET / 200 in 370ms (next.js: 9ms, proxy.ts: 8ms, generate-params: 149ms, application-code: 204ms)

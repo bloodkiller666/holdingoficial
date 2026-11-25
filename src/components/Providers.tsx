@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@/lib/theme";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { I18nProvider } from "@/lib/i18n";
@@ -56,7 +56,7 @@ function SkipLink({ lang }: { lang: Locale }) {
 
 export default function Providers({ children, lang }: { children: React.ReactNode; lang: Locale }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <ThemeProvider>
       <I18nProvider lang={lang}>
         <SkipLink lang={lang} />
         <SmoothScroll />

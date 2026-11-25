@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "@/components/Link";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/lib/theme";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useI18n } from "@/lib/i18n";
