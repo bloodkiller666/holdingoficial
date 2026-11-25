@@ -56,7 +56,7 @@ export default function SolutionPage({ index }: { index: number }) {
 
   return (
     <SiteShell>
-      <main ref={root} className="bg-bg">
+      <main id="contenido" tabIndex={-1} ref={root} className="bg-bg">
         {/* Cabecera */}
         <section className="relative isolate flex min-h-[420px] items-end overflow-hidden bg-[#0a2a5c] pt-16 text-white lg:min-h-[560px]">
           <div data-sd-bg className="absolute inset-0 -z-10">

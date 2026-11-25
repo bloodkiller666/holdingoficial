@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "@/components/Link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SiteShell from "./SiteShell";
 import { useI18n } from "@/lib/i18n";
+import { UrlTab, writeUrlTab } from "@/lib/urlTab";
 import { r2 } from "@/lib/r2";
 import { productHref, productLabels, productMeta, productTabBanners, productTitles } from "@/lib/productsData";
 import { prefersReducedMotion } from "@/lib/useReveal";
@@ -18,13 +19,6 @@ export default function ProductsPage() {
   const tabs = t.products.tabs;
   const root = useRef<HTMLElement>(null);
   const [tab, setTab] = useState(0);
-
-  // Como en el sitio original, /productos?tab-2 abre esa pestaña.
-  useEffect(() => {
-    const m = /tab-([1-3])/.exec(window.location.search);
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- el valor viene de la URL, que solo existe en el cliente
-    if (m) setTab(Number(m[1]) - 1);
-  }, []);
 
   const items = productMeta.map((p, i) => ({ ...p, i, title: titles[i] })).filter((p) => p.tab === tab);
 
@@ -47,7 +41,8 @@ export default function ProductsPage() {
 
   return (
     <SiteShell>
-      <main ref={root}>
+      <main id="contenido" tabIndex={-1} ref={root}>
+        <UrlTab onTab={setTab} />
         <section className="relative isolate overflow-hidden bg-[#0a2a5c] pb-16 pt-32 text-white lg:pb-24 lg:pt-44">
           {productTabBanners.map((b, k) => (
             <Image key={b} src={r2(b)} alt="" fill priority={k === 0} sizes="100vw" className={`-z-10 object-cover transition-opacity duration-700 ${tab === k ? "opacity-100" : "opacity-0"}`} />
@@ -73,7 +68,7 @@ export default function ProductsPage() {
                   key={name}
                   type="button"
                   aria-pressed={tab === k}
-                  onClick={() => setTab(k)}
+                  onClick={() => { setTab(k); writeUrlTab(k); }}
                   className={`rounded-full border px-5 py-2.5 text-sm font-bold transition duration-200 active:scale-[0.97] ${
                     tab === k ? "border-brand bg-brand text-white shadow-md shadow-brand/30" : "border-line bg-surface text-heading hover:border-brand hover:text-brand"
                   }`}

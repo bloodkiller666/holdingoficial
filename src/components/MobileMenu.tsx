@@ -53,6 +53,7 @@ export default function MobileMenu({ open, onClose }: Props) {
     if (!open || !panel.current) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden"; // evita que el fondo se desplace al hacer scroll en el panel (iOS)
     lenisRef.current?.stop();
     const ctx = gsap.context(() => {
       if (reduce) return;
@@ -66,6 +67,7 @@ export default function MobileMenu({ open, onClose }: Props) {
       window.removeEventListener("keydown", onKey);
       ctx.revert();
       document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
       lenisRef.current?.start();
       if (pending.current) {
         const h = pending.current;
@@ -93,8 +95,9 @@ export default function MobileMenu({ open, onClose }: Props) {
 
   return createPortal(
     <div className="fixed inset-0 z-[100] xl:hidden" role="dialog" aria-modal="true" aria-label={nav.menu}>
-      <div data-mm-scrim onClick={close} className="absolute inset-0 bg-black/50" />
-      <div ref={panel} className="absolute inset-y-0 left-0 flex w-[min(88vw,380px)] flex-col overflow-y-auto overscroll-contain bg-bg shadow-2xl">
+      <div data-mm-scrim onClick={close} className="absolute inset-0 touch-none bg-black/50" />
+      {/* data-lenis-prevent: Lenis está detenido mientras el menú está abierto y bloquearía el scroll del panel. h-dvh: la altura visible real en móvil (sin la barra del navegador). */}
+      <div ref={panel} data-lenis-prevent className="absolute left-0 top-0 flex h-dvh w-[min(88vw,380px)] flex-col overflow-y-auto overscroll-contain bg-bg shadow-2xl [-webkit-overflow-scrolling:touch]">
         <div className="flex h-16 shrink-0 items-center justify-between px-5">
           <Image src={r2(IMG.logo)} alt="TDM Asfaltos" width={48} height={48} unoptimized className="h-11 w-11" />
           <button type="button" aria-label={nav.close} onClick={close} className="grid h-11 w-11 place-items-center rounded-full text-heading active:scale-95 active:bg-alt">
@@ -102,7 +105,7 @@ export default function MobileMenu({ open, onClose }: Props) {
           </button>
         </div>
 
-        <nav className="flex flex-1 flex-col px-5 pb-8">
+        <nav className="flex flex-1 flex-col px-5 pb-[max(2rem,env(safe-area-inset-bottom))]">
           <div data-mm-item><a href="#propuesta" onClick={(e) => { e.preventDefault(); go("#propuesta"); }} className={row}>{nav.value}</a></div>
 
           <div data-mm-item>

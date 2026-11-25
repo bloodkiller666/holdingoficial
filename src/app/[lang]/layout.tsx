@@ -32,6 +32,7 @@ export default async function RootLayout({ children, params }: { children: React
   return (
     <html lang={lang} suppressHydrationWarning className={`${barlow.variable} ${cairo.variable}`}>
       <head>
+        {process.env.NEXT_PUBLIC_R2_DOMAIN && <link rel="preconnect" href={process.env.NEXT_PUBLIC_R2_DOMAIN} crossOrigin="anonymous" />}
         <noscript><style>{".tdm-loader{display:none!important}"}</style></noscript>
       </head>
       <body className="antialiased">

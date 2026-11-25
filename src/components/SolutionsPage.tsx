@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "@/components/Link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SiteShell from "./SiteShell";
 import { useI18n } from "@/lib/i18n";
+import { UrlTab, writeUrlTab } from "@/lib/urlTab";
 import { r2 } from "@/lib/r2";
 import { solutionHref, solutionLabels, solutionMeta, solutionTitles } from "@/lib/solutionsData";
 import { prefersReducedMotion } from "@/lib/useReveal";
@@ -17,13 +18,6 @@ export default function SolutionsPage() {
   const titles = solutionTitles(locale);
   const root = useRef<HTMLElement>(null);
   const [tab, setTab] = useState(0);
-
-  // Como en el sitio original, /solucion?tab-2 abre esa pestaña.
-  useEffect(() => {
-    const m = /tab-([1-3])/.exec(window.location.search);
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- el valor viene de la URL, que solo existe en el cliente
-    if (m) setTab(Number(m[1]) - 1);
-  }, []);
 
   const items = solutionMeta.map((s, i) => ({ ...s, i, title: titles[i] })).filter((s) => s.cat === tab);
 
@@ -47,7 +41,8 @@ export default function SolutionsPage() {
 
   return (
     <SiteShell>
-      <main ref={root}>
+      <main id="contenido" tabIndex={-1} ref={root}>
+        <UrlTab onTab={setTab} />
         <section className="bg-gradient-to-br from-[#c9500f] via-brand to-[#ff7a3c] pb-16 pt-32 text-white lg:pb-24 lg:pt-44">
           <div className="mx-auto max-w-[1400px] px-5 lg:px-10">
             <nav data-sp-crumb aria-label="breadcrumb" className="mb-6 flex items-center gap-2 text-sm text-white/80">
@@ -70,7 +65,7 @@ export default function SolutionsPage() {
                   key={name}
                   type="button"
                   aria-pressed={tab === k}
-                  onClick={() => setTab(k)}
+                  onClick={() => { setTab(k); writeUrlTab(k); }}
                   className={`rounded-full border px-5 py-2.5 text-sm font-bold transition duration-200 active:scale-[0.97] ${
                     tab === k ? "border-brand bg-brand text-white shadow-md shadow-brand/30" : "border-line bg-surface text-heading hover:border-brand hover:text-brand"
                   }`}

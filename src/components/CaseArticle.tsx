@@ -80,7 +80,7 @@ export default function CaseArticle({ index }: { index: number }) {
 
   return (
     <SiteShell>
-      <main ref={root} className="bg-bg">
+      <main id="contenido" tabIndex={-1} ref={root} className="bg-bg">
         {/* Cabecera */}
         <section className="pb-10 pt-28 lg:pt-36">
           <div className="mx-auto max-w-[1100px] px-5 lg:px-10">

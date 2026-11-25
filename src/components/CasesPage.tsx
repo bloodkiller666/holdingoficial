@@ -43,7 +43,7 @@ export default function CasesPage() {
 
   return (
     <SiteShell>
-      <main ref={root}>
+      <main id="contenido" tabIndex={-1} ref={root}>
         {/* Cabecera de página */}
         <section className="bg-gradient-to-br from-[#c9500f] via-brand to-[#ff7a3c] pb-16 pt-32 text-white lg:pb-24 lg:pt-44">
           <div className="mx-auto max-w-[1400px] px-5 lg:px-10">

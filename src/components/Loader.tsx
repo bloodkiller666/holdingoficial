@@ -70,25 +70,25 @@ export default function Loader() {
       .from("[data-ld-letter]", { yPercent: 120, opacity: 0, stagger: 0.05, duration: 0.6, ease: "power3.out" }, 0.25)
       .from("[data-ld-roadwrap]", { scaleX: 0, duration: 0.7, ease: "power3.out" }, 0.35);
 
-    const ready = new Promise<void>((res) => {
-      const done = () => res();
-      if (document.readyState === "complete") done();
-      else window.addEventListener("load", done, { once: true });
-    }).then(() => document.fonts?.ready).catch(() => undefined);
+    // Solo se esperan las fuentes (con tope de 700 ms): esperar al evento «load» retrasaba la web hasta que bajara cada imagen.
+    const ready = Promise.race([
+      Promise.resolve(document.fonts?.ready).catch(() => undefined),
+      new Promise((r) => setTimeout(r, 700)),
+    ]);
 
-    gsap.to(progress, { v: seen ? 100 : 88, duration: seen ? 0.45 : 1.3, ease: "power2.out", onUpdate: paint });
+    gsap.to(progress, { v: seen ? 100 : 88, duration: seen ? 0.3 : 0.8, ease: "power2.out", onUpdate: paint });
 
-    Promise.all([ready, new Promise((r) => setTimeout(r, seen ? 450 : 1500))]).then(() => {
+    Promise.all([ready, new Promise((r) => setTimeout(r, seen ? 120 : 800))]).then(() => {
       if (cancelled) return;
       gsap.to(progress, { v: 100, duration: 0.4, ease: "power1.out", onUpdate: paint });
       const out = gsap.timeline({
-        delay: seen ? 0.1 : 0.25,
+        delay: seen ? 0.05 : 0.15,
         onComplete: () => { dashes.kill(); finish(); },
       });
       out.to("[data-ld-content]", { opacity: 0, scale: 1.06, duration: 0.45, ease: "power2.in" })
         .add(() => { paused.forEach((a) => a.resume()); }, "-=0.1")
-        .to(cols(), { yPercent: -100, duration: seen ? 0.7 : 0.9, ease: "power4.inOut", stagger: { each: 0.06, from: "center" } }, "-=0.1")
-        .to("[data-ld-line]", { yPercent: -100, duration: seen ? 0.7 : 0.9, ease: "power4.inOut", stagger: { each: 0.06, from: "center" } }, "<0.06");
+        .to(cols(), { yPercent: -100, duration: seen ? 0.55 : 0.7, ease: "power4.inOut", stagger: { each: 0.05, from: "center" } }, "-=0.1")
+        .to("[data-ld-line]", { yPercent: -100, duration: seen ? 0.55 : 0.7, ease: "power4.inOut", stagger: { each: 0.05, from: "center" } }, "<0.05");
     });
 
     }, root);
@@ -129,8 +129,8 @@ export default function Loader() {
     gsap.set(cols(), { yPercent: 0 });
     gsap.set("[data-ld-line]", { yPercent: 0 });
     const tl = gsap.timeline({ onComplete: () => { el.style.display = "none"; ScrollTrigger.refresh(); } });
-    tl.to(cols(), { yPercent: -100, duration: 0.7, ease: "power4.inOut", stagger: { each: 0.05, from: "start" }, delay: 0.05 })
-      .to("[data-ld-line]", { yPercent: -100, duration: 0.8, ease: "power4.inOut", stagger: { each: 0.05, from: "start" } }, "<0.05");
+    tl.to(cols(), { yPercent: -100, duration: 0.5, ease: "power4.inOut", stagger: { each: 0.035, from: "start" } })
+      .to("[data-ld-line]", { yPercent: -100, duration: 0.55, ease: "power4.inOut", stagger: { each: 0.035, from: "start" } }, "<0.03");
   }, [pathname]);
 
   return (

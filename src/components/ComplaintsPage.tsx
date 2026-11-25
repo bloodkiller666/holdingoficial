@@ -77,7 +77,7 @@ export default function ComplaintsPage() {
 
   return (
     <SiteShell>
-      <main className="relative isolate overflow-hidden bg-bg">
+      <main id="contenido" tabIndex={-1} className="relative isolate overflow-hidden bg-bg">
         <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-b from-[#0a2a5c] via-[#0f3d82] to-transparent dark:from-[#050d1f] dark:via-[#0a1d42]" />
 
         <section className="mx-auto max-w-[1400px] px-5 pb-8 pt-24 text-white lg:px-10 lg:pt-28">

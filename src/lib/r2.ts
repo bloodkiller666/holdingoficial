@@ -1,6 +1,14 @@
-/** Devuelve la URL pública de un objeto en Cloudflare R2. */
+import optimized from "./r2Optimized.json";
+
+const optimizedKeys: Record<string, string> = optimized;
+
+/**
+ * Devuelve la URL pública de un objeto en Cloudflare R2.
+ * Si existe una versión optimizada (generada con `scripts/optimize-r2.mjs`) se usa esa; los originales siguen intactos en R2.
+ * Para volver a los originales basta con vaciar `r2Optimized.json` (`{}`).
+ */
 export const r2 = (key: string) =>
-  `${(process.env.NEXT_PUBLIC_R2_DOMAIN ?? "").replace(/\/$/, "")}/${key}`;
+  `${(process.env.NEXT_PUBLIC_R2_DOMAIN ?? "").replace(/\/$/, "")}/${optimizedKeys[key] ?? key}`;
 
 export const IMG = {
   logo: "Logo-TDM_Asfaltos.svg",

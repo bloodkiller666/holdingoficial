@@ -28,7 +28,7 @@ export default function PrivacyPage() {
 
   return (
     <SiteShell>
-      <main ref={root} className="relative isolate overflow-hidden bg-bg">
+      <main id="contenido" tabIndex={-1} ref={root} className="relative isolate overflow-hidden bg-bg">
         <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-b from-[#0a2a5c] via-[#0f3d82] to-transparent dark:from-[#050d1f] dark:via-[#0a1d42]" />
         <div aria-hidden className="absolute -right-40 top-20 -z-10 h-[420px] w-[420px] rounded-full bg-brand/20 blur-[120px]" />
 

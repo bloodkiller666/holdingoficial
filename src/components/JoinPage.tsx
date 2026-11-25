@@ -26,11 +26,11 @@ function VideoModal({ onClose, label }: { onClose: () => void; label: string }) 
   }, [onClose]);
 
   return createPortal(
-    <div role="dialog" aria-modal="true" className="fixed inset-0 z-[100] grid place-items-center bg-black/80 p-4" onClick={onClose}>
+    <div role="dialog" aria-modal="true" aria-label="TDM Asfaltos" className="fixed inset-0 z-[100] grid place-items-center bg-black/80 p-4" onClick={onClose}>
       <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl" onClick={(e) => e.stopPropagation()}>
         <iframe src={`https://www.youtube.com/embed/${JOIN.video}?autoplay=1&rel=0`} title="TDM Asfaltos" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen className="absolute inset-0 h-full w-full" />
       </div>
-      <button type="button" onClick={onClose} aria-label={label} className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white/15 text-2xl leading-none text-white transition hover:bg-white/30 active:scale-95">×</button>
+      <button type="button" autoFocus onClick={onClose} aria-label={label} className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white/15 text-2xl leading-none text-white transition hover:bg-white/30 active:scale-95">×</button>
     </div>,
     document.body,
   );
@@ -61,7 +61,7 @@ export default function JoinPage() {
 
   return (
     <SiteShell>
-      <main ref={root} className="bg-bg">
+      <main id="contenido" tabIndex={-1} ref={root} className="bg-bg">
         {/* Encabezado */}
         <section className="relative isolate flex min-h-[420px] items-end overflow-hidden bg-[#0a2a5c] pt-16 text-white lg:min-h-[540px]">
           <div data-jn-bg className="absolute inset-0 -z-10">

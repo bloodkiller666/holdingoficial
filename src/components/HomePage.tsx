@@ -37,7 +37,7 @@ export default function HomePage() {
 
   return (
     <SiteShell>
-      <main>
+      <main id="contenido" tabIndex={-1}>
         <Hero />
         <About />
         <Solutions />

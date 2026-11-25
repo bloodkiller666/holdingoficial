@@ -72,7 +72,7 @@ export default function AboutPage() {
 
   return (
     <SiteShell>
-      <main ref={root} className="bg-bg">
+      <main id="contenido" tabIndex={-1} ref={root} className="bg-bg">
         {/* Encabezado */}
         <section className="relative isolate flex min-h-[460px] items-end overflow-hidden bg-[#0a2a5c] pt-16 text-white lg:min-h-[600px]">
           <div data-ab-bg className="absolute inset-0 -z-10">

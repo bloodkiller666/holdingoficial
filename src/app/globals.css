@@ -71,6 +71,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
   .js [data-reveal] { opacity: 0; transform: translateY(40px); }
 }
 
+main:focus { outline: none; }
 :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
 
 /* Feedback de pulsación: todo lo que se pulsa responde al instante (Emil: scale .97, 160ms ease-out) */
